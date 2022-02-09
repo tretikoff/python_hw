@@ -1,0 +1,40 @@
+FROM ubuntu:xenial
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update -q && apt-get install -qy --no-install-recommends --no-install-suggests \
+    gcc \
+    graphviz \
+    inkscape \
+    make \
+    python \
+    python-dev \
+    python-tk \
+    python-pip \
+    python3 \
+    python3-dev \
+    python3-tk \
+    python3-pip \
+    texlive-base \
+    xvfb \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip install --upgrade pip \
+    && rm -r ~/.cache/pip
+RUN pip install --upgrade setuptools \
+    && rm -r ~/.cache/pip
+RUN pip install pandas seaborn pyyaml statsmodels \
+    && rm -r ~/.cache/pip
+
+RUN pip3 install --upgrade pip \
+    && rm -r ~/.cache/pip
+RUN pip3 install --upgrade setuptools \
+    && rm -r ~/.cache/pip
+RUN pip3 install pandas seaborn pyyaml statsmodels \
+    && rm -r ~/.cache/pip
+
+ADD entry.sh /entry.sh
+
+WORKDIR /data
+VOLUME ["/data"]
+
+ENTRYPOINT ["/entry.sh"]
