@@ -1,3 +1,5 @@
+import python_hw
+
 def format_row(lst):
     return ' & '.join(lst) + ' \\\\\n'
 

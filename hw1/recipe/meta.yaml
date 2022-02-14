@@ -1,0 +1,17 @@
+package:
+  name: "python_hw"
+  version: "0.0.3"
+
+source:
+  path: ..
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+
+about:
+  home: https://github.com/tretikoff/python_hw

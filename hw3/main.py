@@ -6,12 +6,27 @@ class MatrixHashMixin:
         pass
 
 
-class MatrixEasy(MatrixHashMixin):
-    def __init__(self, data):
-        self.data = data
-        self.height = len(data)
-        self.width = 0 if self.height == 0 else len(data[0])
+class MatrixStrMixin:
+    def __init__(self, value):
+        self.value = value
 
+    def write_to_file(self, filename):
+        with open(filename, "w") as file:
+            file.write(str(self))
+            file.close()
+
+    def __repr__(self):
+        return ''
+
+    def __getattr__(self, item):
+        if item == 'height':
+            return len(self.value)
+        if item == 'width':
+            return 0 if self.height == 0 else len(self.value[0])
+        raise NotImplementedError
+
+
+class MatrixEasy(MatrixHashMixin, MatrixStrMixin):
     def __matmul__(self, other):
         if self.width != other.height:
             raise ArithmeticError("Matrix sizes do not match")
@@ -19,7 +34,7 @@ class MatrixEasy(MatrixHashMixin):
         for i in range(self.height):
             for j in range(other.width):
                 for k in range(other.height):
-                    result[i][j] = self.data[i][k] * other.data[k][j]
+                    result[i][j] = self.value[i][k] * other.value[k][j]
         return MatrixEasy(result)
 
     def __mul__(self, other):
@@ -28,7 +43,7 @@ class MatrixEasy(MatrixHashMixin):
         result = [[None] * self.width] * self.height
         for h in range(self.height):
             for w in range(self.width):
-                result[h][w] = self.data[h][w] * other.data[h][w]
+                result[h][w] = self.value[h][w] * other.value[h][w]
         return MatrixEasy(result)
 
     def __add__(self, other):
@@ -37,24 +52,18 @@ class MatrixEasy(MatrixHashMixin):
         result = [[None] * self.width] * self.height
         for h in range(self.height):
             for w in range(self.width):
-                result[h][w] = self.data[h][w] + other.data[h][w]
+                result[h][w] = self.value[h][w] + other.value[h][w]
         return MatrixEasy(result)
 
-    def __str__(self):
-        result = ""
-        for h in range(self.height):
-            result += " ".join((map(str, self.data[h]))) + "\n"
-        return result
 
-
-class Matrix(np.lib.mixins.NDArrayOperatorsMixin):
-    pass
+class Matrix(MatrixStrMixin, np.lib.mixins.NDArrayOperatorsMixin):
+    def __array_ufunc__(self, ufunc, method, *inputs, **kwargs):
+        print(ufunc, method)
+        return self.value
 
 
 def eval_op(m1, m2, op):
-    with open("artifacts/easy/matrix" + (op if op != "*" else "ml") + ".txt", "w") as file:
-        file.write(str(eval("m1 " + op + " m2")))
-        file.close()
+    eval("m1 " + op + " m2").write_to_file("artifacts/easy/matrix" + (op if op != "*" else "ml") + ".txt")
 
 
 def run_easy():
@@ -66,8 +75,8 @@ def run_easy():
 
 
 def run_medium():
-    m1 = MatrixEasy(np.random.randint(0, 10, (10, 10)))
-    m2 = MatrixEasy(np.random.randint(0, 10, (10, 10)))
+    m1 = Matrix(np.random.randint(0, 10, (10, 10)))
+    m2 = Matrix(np.random.randint(0, 10, (10, 10)))
     eval_op(m1, m2, "+")
     eval_op(m1, m2, "*")
     eval_op(m1, m2, "@")
