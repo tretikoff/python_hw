@@ -1,5 +1,4 @@
 import ast
-import astunparse
 import inspect
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -121,5 +120,5 @@ if __name__ == '__main__':
     plt.figure(figsize=(9, 9))
     nx.draw(tree, pos, with_labels=True, labels=labels, node_color=color_map,
             node_size=[len(labels[v]) * 450 for v in tree.nodes()])
-    plt.savefig('../artifacts/tree.png')
+    plt.savefig('artifacts/tree.png')
     plt.show()

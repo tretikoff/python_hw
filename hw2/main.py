@@ -3,11 +3,13 @@ def format_row(lst):
 
 
 def preamble(lst):
-    return '|'.join(map(lambda _: 'c', lst))
+    return '|'.join(map(lambda _: 'L', lst))
 
 
 def generate(lst, sep='\\hline\n'):
-    return '\\begin{tabular}{ |' + preamble(lst) + '| }\n' + \
+    return '\\newcolumntype{L}{>{\\centering\\arraybackslash}m{3cm}}\n' \
+           '\\begin{tabular}\n' \
+           '{ |' + preamble(lst) + '| }\n' + \
            sep + sep.join(map(format_row, lst)) + sep + \
            '\\end{tabular}\n'
 
@@ -29,6 +31,6 @@ test2 = [
 ]
 
 if __name__ == '__main__':
-    with open("../artifacts/table.tex", "w") as file:
+    with open("artifacts/table.tex", "w") as file:
         file.write(generate(test2))
         file.close()
