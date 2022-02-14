@@ -1,7 +1,12 @@
 import numpy as np
 
 
-class MatrixEasy:
+class MatrixHashMixin:
+    def __hash__(self):
+        pass
+
+
+class MatrixEasy(MatrixHashMixin):
     def __init__(self, data):
         self.data = data
         self.height = len(data)
@@ -41,26 +46,28 @@ class MatrixEasy:
             result += " ".join((map(str, self.data[h]))) + "\n"
         return result
 
-class Matrix:
-    def __matmul__(self):
-        return
-
-    def __mul__(self, other):
-        return
-
-    def __add__(self, other):
-        return
-
+class Matrix(np.lib.mixins.NDArrayOperatorsMixin):
 
 def eval_op(m1, m2, op):
     with open("artifacts/easy/matrix" + (op if op != "*" else "ml") + ".txt", "w") as file:
         file.write(str(eval("m1 " + op + " m2")))
         file.close()
 
-
-if __name__ == '__main__':
+def run_easy():
     m1 = MatrixEasy(np.random.randint(0, 10, (10, 10)))
     m2 = MatrixEasy(np.random.randint(0, 10, (10, 10)))
     eval_op(m1, m2, "+")
     eval_op(m1, m2, "*")
     eval_op(m1, m2, "@")
+
+def run_medium():
+    m1 = MatrixEasy(np.random.randint(0, 10, (10, 10)))
+    m2 = MatrixEasy(np.random.randint(0, 10, (10, 10)))
+    eval_op(m1, m2, "+")
+    eval_op(m1, m2, "*")
+    eval_op(m1, m2, "@")
+
+
+if __name__ == '__main__':
+    run_easy()
+    run_medium()
