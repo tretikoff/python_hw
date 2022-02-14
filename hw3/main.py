@@ -15,15 +15,18 @@ class MatrixStrMixin:
             file.write(str(self))
             file.close()
 
-    def __repr__(self):
-        return ''
-
     def __getattr__(self, item):
         if item == 'height':
             return len(self.value)
         if item == 'width':
             return 0 if self.height == 0 else len(self.value[0])
         raise NotImplementedError
+
+    def __str__(self):
+        result = ""
+        for h in range(self.height):
+            result += " ".join((map(str, self.value[h]))) + "\n"
+        return result
 
 
 class MatrixEasy(MatrixHashMixin, MatrixStrMixin):
@@ -58,28 +61,24 @@ class MatrixEasy(MatrixHashMixin, MatrixStrMixin):
 
 class Matrix(MatrixStrMixin, np.lib.mixins.NDArrayOperatorsMixin):
     def __array_ufunc__(self, ufunc, method, *inputs, **kwargs):
-        print(ufunc, method)
         return self.value
 
-
-def eval_op(m1, m2, op):
-    eval("m1 " + op + " m2").write_to_file("artifacts/easy/matrix" + (op if op != "*" else "ml") + ".txt")
 
 
 def run_easy():
     m1 = MatrixEasy(np.random.randint(0, 10, (10, 10)))
     m2 = MatrixEasy(np.random.randint(0, 10, (10, 10)))
-    eval_op(m1, m2, "+")
-    eval_op(m1, m2, "*")
-    eval_op(m1, m2, "@")
+    eval("m1 + m2").write_to_file("artifacts/easy/matrix+.txt")
+    eval("m1 @ m2").write_to_file("artifacts/easy/matrix@.txt")
+    eval("m1 * m2").write_to_file("artifacts/easy/matrix_mul.txt")
 
 
 def run_medium():
     m1 = Matrix(np.random.randint(0, 10, (10, 10)))
     m2 = Matrix(np.random.randint(0, 10, (10, 10)))
-    eval_op(m1, m2, "+")
-    eval_op(m1, m2, "*")
-    eval_op(m1, m2, "@")
+    Matrix(eval("m1 + m2")).write_to_file("artifacts/medium/matrix+.txt")
+    Matrix(eval("m1 @ m2")).write_to_file("artifacts/medium/matrix@.txt")
+    Matrix(eval("m1 * m2")).write_to_file("artifacts/medium/matrix_mul.txt")
 
 
 if __name__ == '__main__':
