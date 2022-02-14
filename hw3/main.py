@@ -46,12 +46,16 @@ class MatrixEasy(MatrixHashMixin):
             result += " ".join((map(str, self.data[h]))) + "\n"
         return result
 
+
 class Matrix(np.lib.mixins.NDArrayOperatorsMixin):
+    pass
+
 
 def eval_op(m1, m2, op):
     with open("artifacts/easy/matrix" + (op if op != "*" else "ml") + ".txt", "w") as file:
         file.write(str(eval("m1 " + op + " m2")))
         file.close()
+
 
 def run_easy():
     m1 = MatrixEasy(np.random.randint(0, 10, (10, 10)))
@@ -59,6 +63,7 @@ def run_easy():
     eval_op(m1, m2, "+")
     eval_op(m1, m2, "*")
     eval_op(m1, m2, "@")
+
 
 def run_medium():
     m1 = MatrixEasy(np.random.randint(0, 10, (10, 10)))
