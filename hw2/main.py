@@ -1,18 +1,40 @@
-from hw1.src.tretikoffhw1.tretikoffhw1 import set_picture
+from tretikoffhw1 import set_picture
+from pdflatex import PDFLaTeX
+
 def format_row(lst):
-    return ' & '.join(lst) + ' \\\\\n'
+    return ' & '.join(lst) + r' \\\\ ' + '\n'
 
 
 def preamble(lst):
     return '|'.join(map(lambda _: 'L', lst))
 
 
-def generate(lst, sep='\\hline\n'):
-    return '\\newcolumntype{L}{>{\\centering\\arraybackslash}m{3cm}}\n' \
-           '\\begin{tabular}\n' \
-           '{ |' + preamble(lst) + '| }\n' + \
-           sep + sep.join(map(format_row, lst)) + sep + \
-           '\\end{tabular}\n'
+def generate_table(lst, sep=r'\hline' + '\n'):
+    return '\n'.join([
+        r'\newcolumntype{L}{>{\centering\arraybackslash}m{3cm}}',
+           r'\begin{tabular}',
+           '{ |' + preamble(lst) + '| }',
+           sep + sep.join(map(format_row, lst)) + sep,
+           r'\end{tabular}'
+    ])
+
+
+def generate_picture(path):
+    return '\n' + r'\includegraphics[scale=0.5]{' + path + '}\n'
+
+
+def generate(lst, picturepath):
+    # set_picture(picturepath)
+    return '\n'.join([
+        r'\documentclass{article}',
+        r'\usepackage{array}',
+        r'\usepackage{graphicx}',
+        r'\begin{document}',
+        generate_table(lst),
+        generate_picture(picturepath),
+        r'\end{document}'
+    ])
+
 
 test1 = [
     ['1', '2', '3'],
@@ -31,6 +53,10 @@ test2 = [
 ]
 
 if __name__ == '__main__':
-    with open("artifacts/table.tex", "w") as file:
-        file.write(generate(test2))
+    with open('artifacts/table.tex', 'w') as file:
+        file.write(generate(test2, 'artifacts/tree.png'))
+        file.close()
+
+    with open('artifacts/table.pdf', 'wb') as file:
+        file.write(PDFLaTeX.from_texfile('artifacts/table.tex').create_pdf(keep_pdf_file=True, keep_log_file=True)[0])
         file.close()

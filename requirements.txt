@@ -1,7 +1,7 @@
 astunparse==1.6.3
-cycler==0.11.0
-fonttools==4.28.5
-kiwisolver==1.3.2
+cycler==0.10.0
+fonttools==3.44.0
+kiwisolver==1.1.0
 matplotlib==3.5.1
 networkx==2.6.3
 numpy==1.22.1
@@ -12,4 +12,6 @@ pygraphviz==1.8
 pyparsing==3.0.7
 python-dateutil==2.8.2
 six==1.16.0
-tretikoffhw1==0.0.4
+tretikoffhw1==0.0.1
+python_hw==0.0.0
+pdflatex==0.1.3

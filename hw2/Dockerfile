@@ -7,6 +7,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root
+ADD . /proj
 
 # Default command
 CMD ["bash"]
