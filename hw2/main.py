@@ -24,7 +24,7 @@ def generate_picture(path):
 
 
 def generate(lst, picturepath):
-    # set_picture(picturepath)
+    set_picture(picturepath)
     return '\n'.join([
         r'\documentclass{article}',
         r'\usepackage{array}',
