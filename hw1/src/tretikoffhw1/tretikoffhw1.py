@@ -116,7 +116,7 @@ def print_node(node):
 
 def set_picture(url):
     print_node(ast.parse(inspect.getsource(fib0)))
-    write_dot(tree, '../test.dot')
+    write_dot(tree, '../../../test.dot')
     pos = graphviz_layout(tree, prog='dot')
     plt.figure(figsize=(9, 9))
     nx.draw(tree, pos, with_labels=True, labels=labels, node_color=color_map,

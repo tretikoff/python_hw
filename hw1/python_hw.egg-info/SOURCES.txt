@@ -1,4 +1,3 @@
-main.py
 setup.py
 python_hw.egg-info/PKG-INFO
 python_hw.egg-info/SOURCES.txt

@@ -113,12 +113,17 @@ class NodeVisitor(object):
 def print_node(node):
     NodeVisitor().visit(node)
 
-if __name__ == '__main__':
+
+def set_picture(url):
     print_node(ast.parse(inspect.getsource(fib0)))
     write_dot(tree, '../test.dot')
     pos = graphviz_layout(tree, prog='dot')
     plt.figure(figsize=(9, 9))
     nx.draw(tree, pos, with_labels=True, labels=labels, node_color=color_map,
             node_size=[len(labels[v]) * 450 for v in tree.nodes()])
-    plt.savefig('artifacts/tree.png')
+    plt.savefig(url)
     plt.show()
+
+
+if __name__ == '__main__':
+    set_picture('artifacts/tree.png')

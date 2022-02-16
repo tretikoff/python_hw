@@ -1,0 +1,25 @@
+strict digraph "" {
+	"<ast.Module object at 0x11440cb80>" -> "<ast.FunctionDef object at 0x11440caf0>";
+	"<ast.FunctionDef object at 0x11440caf0>" -> "<ast.arguments object at 0x1143d4b50>";
+	"<ast.FunctionDef object at 0x11440caf0>" -> "<ast.If object at 0x1143c0e50>";
+	"<ast.FunctionDef object at 0x11440caf0>" -> "<ast.Return object at 0x1118d6ac0>";
+	"<ast.arguments object at 0x1143d4b50>" -> "<ast.arg object at 0x11432c670>";
+	"<ast.If object at 0x1143c0e50>" -> "<ast.BoolOp object at 0x1141c4c10>";
+	"<ast.If object at 0x1143c0e50>" -> "<ast.Return object at 0x11442edc0>";
+	"<ast.BoolOp object at 0x1141c4c10>" -> "<ast.Compare object at 0x1118d6f40>";
+	"<ast.BoolOp object at 0x1141c4c10>" -> "<ast.Compare object at 0x1118c5340>";
+	"<ast.Compare object at 0x1118d6f40>" -> "<ast.Name object at 0x1118d6fa0>";
+	"<ast.Compare object at 0x1118d6f40>" -> "<ast.Constant object at 0x1118cb880>";
+	"<ast.Compare object at 0x1118c5340>" -> "<ast.Name object at 0x11442ee20>";
+	"<ast.Compare object at 0x1118c5340>" -> "<ast.Constant object at 0x11442edf0>";
+	"<ast.Return object at 0x11442edc0>" -> "<ast.Constant object at 0x11442ed90>";
+	"<ast.Return object at 0x1118d6ac0>" -> "<ast.BinOp object at 0x11442ed30>";
+	"<ast.BinOp object at 0x11442ed30>" -> "<ast.Call object at 0x11442ed00>";
+	"<ast.BinOp object at 0x11442ed30>" -> "<ast.Call object at 0x11442ec40>";
+	"<ast.Call object at 0x11442ed00>" -> "<ast.BinOp object at 0x11442eca0>";
+	"<ast.BinOp object at 0x11442eca0>" -> "<ast.Name object at 0x11442ec70>";
+	"<ast.BinOp object at 0x11442eca0>" -> "<ast.Constant object at 0x11442ec10>";
+	"<ast.Call object at 0x11442ec40>" -> "<ast.BinOp object at 0x11442ebb0>";
+	"<ast.BinOp object at 0x11442ebb0>" -> "<ast.Name object at 0x11442eb80>";
+	"<ast.BinOp object at 0x11442ebb0>" -> "<ast.Constant object at 0x11442eb50>";
+}

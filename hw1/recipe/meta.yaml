@@ -1,6 +1,6 @@
 package:
-  name: "python_hw"
-  version: "0.0.3"
+  name: "tretikoffhw1"
+  version: "0.0.4"
 
 source:
   path: ..
@@ -14,4 +14,4 @@ requirements:
     - python
 
 about:
-  home: https://github.com/tretikoff/python_hw
+  home: https://github.com/tretikoff/tretikoffhw1

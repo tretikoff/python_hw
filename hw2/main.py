@@ -1,5 +1,4 @@
-import python_hw
-
+from hw1.src.tretikoffhw1.tretikoffhw1 import set_picture
 def format_row(lst):
     return ' & '.join(lst) + ' \\\\\n'
 
@@ -14,7 +13,6 @@ def generate(lst, sep='\\hline\n'):
            '{ |' + preamble(lst) + '| }\n' + \
            sep + sep.join(map(format_row, lst)) + sep + \
            '\\end{tabular}\n'
-
 
 test1 = [
     ['1', '2', '3'],

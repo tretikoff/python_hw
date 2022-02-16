@@ -1,22 +1,8 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
-    name='python_hw',
-    version='',
-    install_requires=['astunparse',
-                      'cycler',
-                      'fonttools',
-                      'kiwisolver',
-                      'matplotlib',
-                      'networkx',
-                      'numpy',
-                      'packaging',
-                      'Pillow',
-                      'pydot',
-                      'pygraphviz',
-                      'pyparsing',
-                      'python-dateutil',
-                      'six'],
+    name='tretikoffhw1',
+    version='0.0.1',
     packages=[''],
     url='',
     license='',
