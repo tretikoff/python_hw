@@ -16,5 +16,9 @@ RUN apt-get update && \
 WORKDIR /root
 ADD . /proj
 
+RUN  cd /proj && \
+    pip3.9 install -r requirements.txt && \
+    cd hw2
+
 # Default command
 CMD ["bash"]
