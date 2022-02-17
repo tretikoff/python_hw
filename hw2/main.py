@@ -2,7 +2,7 @@ import tretikoffhw1
 from pdflatex import PDFLaTeX
 
 def format_row(lst):
-    return ' & '.join(lst) + r' \\\\ ' + '\n'
+    return ' & '.join(lst) + r' \\ ' + '\n'
 
 
 def preamble(lst):
