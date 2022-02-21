@@ -19,7 +19,8 @@ WORKDIR /root
 ADD . /proj
 
 RUN  cd /proj && \
-    pip3.9 install -r requirements.txt
+    pip3.9 install -r requirements.txt && \
+    python3.9 main.py
 
 # Default command
 CMD ["bash"]
