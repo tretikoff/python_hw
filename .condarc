@@ -1,0 +1,2 @@
+conda config --add channels tretikoff
+conda install python_hw

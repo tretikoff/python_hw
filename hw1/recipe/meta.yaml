@@ -1,0 +1,17 @@
+package:
+  name: "tretikoffhw1"
+  version: "0.0.4"
+
+source:
+  path: ..
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+
+about:
+  home: https://github.com/tretikoff/tretikoffhw1
