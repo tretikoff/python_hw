@@ -63,15 +63,21 @@ def run_easy():
 
 
 def run_iteration(args):
-    (i, f, a, step, logger) = args
+    (i, f, a, step, logger, batch_size, delta) = args
     logger.log("Iteration %d started working on thread %s\n" % (i, Thread().name))
-    return f(a + i * step) * step
+    result = 0
+    for j in range(i * batch_size, (i + 1) * batch_size - delta):
+        result += f(a + j * step) * step
+    return result
 
 
 def integrate(f, a, b, *, n_jobs=1, n_iter=1000, executor, logger):
     with executor(max_workers=n_jobs) as executor:
         step = (b - a) / n_iter
-        args_range = map(lambda i: (i, f, a, step, logger), range(n_iter))
+        batch_size = int(n_iter / n_jobs) + 1
+        delta = n_iter - (batch_size * n_jobs)
+        args_range = map(lambda i: (i, f, a, step, logger, batch_size, (delta if i == n_jobs - 1 else 0)),
+                         range(n_jobs))
         values = executor.map(run_iteration, args_range)
         return sum(values)
 
@@ -90,6 +96,7 @@ class Logger:
                 file.write(self.messageQueue.get())
             file.close()
 
+
 # "Переписать функцию integrate для того, чтобы ее выполнение можно было распараллелить.
 # Иcпользовать `concurrent.futures`: `ThreadPoolExecutor` и `ProcessPoolExecutor`.
 # Добавить логирование (когда какая задача запускается),
@@ -101,9 +108,10 @@ class Logger:
 def run_medium():
     with open("artifacts/medium/statistics.txt", "w") as file:
         logger = Logger("artifacts/medium/logs.txt")
+
         def benchmark_integrate(executor, n_jobs):
             start = time()
-            integrate(math.cos, 0, math.pi / 2, n_jobs=n_jobs, executor=executor, logger=logger)
+            integrate(math.cos, 0, math.pi / 2, n_jobs=n_jobs, executor=executor, logger=logger, n_iter=10 ** 8)
             end = time()
             file.write("%s executor with %d jobs: %s\n" % (executor.__name__, n_jobs, str(end - start)))
 
@@ -165,6 +173,6 @@ def run_hard():
 
 
 if __name__ == '__main__':
-    run_easy()
+    # run_easy()
     run_medium()
-    run_hard()
+    # run_hard()
