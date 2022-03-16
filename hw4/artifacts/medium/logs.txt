@@ -1,0 +1,14 @@
+Iteration 1 started working on thread Thread-29
+Iteration 0 started working on thread Thread-28
+Iteration 3 started working on thread Thread-31
+Iteration 2 started working on thread Thread-30
+Iteration 5 started working on thread Thread-33
+Iteration 4 started working on thread Thread-32
+Iteration 6 started working on thread Thread-34
+Iteration 0 started working on thread Thread-1
+Iteration 1 started working on thread Thread-1
+Iteration 2 started working on thread Thread-1
+Iteration 3 started working on thread Thread-1
+Iteration 4 started working on thread Thread-1
+Iteration 6 started working on thread Thread-1
+Iteration 5 started working on thread Thread-1

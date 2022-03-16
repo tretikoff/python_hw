@@ -1,0 +1,14 @@
+ThreadPoolExecutor executor with 1 jobs: 13.405689001083374
+ProcessPoolExecutor executor with 1 jobs: 14.182584047317505
+ThreadPoolExecutor executor with 2 jobs: 14.390389204025269
+ProcessPoolExecutor executor with 2 jobs: 8.762570142745972
+ThreadPoolExecutor executor with 3 jobs: 14.744961738586426
+ProcessPoolExecutor executor with 3 jobs: 5.705536842346191
+ThreadPoolExecutor executor with 4 jobs: 14.002881050109863
+ProcessPoolExecutor executor with 4 jobs: 4.279591083526611
+ThreadPoolExecutor executor with 5 jobs: 14.550570964813232
+ProcessPoolExecutor executor with 5 jobs: 3.716172695159912
+ThreadPoolExecutor executor with 6 jobs: 14.41361403465271
+ProcessPoolExecutor executor with 6 jobs: 3.5785973072052
+ThreadPoolExecutor executor with 7 jobs: 14.467958927154541
+ProcessPoolExecutor executor with 7 jobs: 2.70969295501709
